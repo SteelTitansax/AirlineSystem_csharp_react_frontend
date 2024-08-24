@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import SearchForm from './components/buttons/search-form';
+import FlightList from './components/buttons/flight-list';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App = () => {
+  const [flights, setFlights] = useState([]);
+
+  const handleSearch = (data) => {
+    setFlights(data);
+  } 
+
+  return ( 
+    <div>
+      <h1>Airline Booking App</h1>
+      <SearchForm onSearch={handleSearch} />
+      {flights.length > 0 && <FlightList flights={flights} />}
     </div>
-  );
+  )
 }
 
 export default App;
